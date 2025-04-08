@@ -4,12 +4,12 @@
 
 **Board Things**
 - Display the game board.
-- Slide tiles from user input.
-- Display win screen if won.
+- Slide tiles.
 - Randomise the starting state.
-- Timer.
+- Display win screen if condition met.
 
 **User Things**
-- Get commands from the user.
-- Ignore invalid inputs.
-- Allow user to quit before winning.
+- Get input from the user.
+- Handle invalid inputs.
+- Allow user to quit.
+
