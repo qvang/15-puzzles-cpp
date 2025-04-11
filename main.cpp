@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class Tile {
 
@@ -20,16 +21,48 @@ std::ostream &operator<<(std::ostream &out, Tile tile) {
   else if (tile.m_displayValue > 9)
     out << " " << tile.m_displayValue << " ";
   else
-    out << "  " << tile.m_displayValue << "  ";
+    out << "  " << tile.m_displayValue << " ";
+
+  return out;
+}
+
+constexpr int consoleLines{25};
+
+class Board {
+public:
+  Board() {
+    for (std::size_t i{}; i < 16; ++i) {
+      Tile tile{static_cast<int>(i)};
+      boardArray.push_back(tile);
+    }
+  }
+
+  std::vector<Tile> boardArray{};
+
+  friend std::ostream &operator<<(std::ostream &out, Board board);
+};
+
+std::ostream &operator<<(std::ostream &out, Board board) {
+
+  for (std::size_t i{}; i < consoleLines; ++i) {
+    out << '\n';
+  }
+
+  int j{};
+  for (std::size_t i{1}; i <= 16; ++i) {
+    if (j % 4 == 0 && i != 1) {
+      out << '\n';
+    }
+    out << board.boardArray[i];
+    j++;
+  }
 
   return out;
 }
 
 int main() {
-  Tile tile1{10};
-  Tile tile2{8};
-  Tile tile3{0}; // the missing tile
-  Tile tile4{1};
+  Board board{};
+  std::cout << board;
 
   return 0;
 }
